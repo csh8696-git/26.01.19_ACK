@@ -149,16 +149,26 @@ int solution(string s) {
 			result += s[i];
 			i++;
 		}
-		else {
-			for (auto& [word, digit] : table) {
-				if (s.substr(i, word.size()) == word) {
-					result += digit;
-					i += word.size();
-					break;
-				}
+		//else {
+		//	for (auto& [word, digit] : table) {
+		//		if (s.substr(i, word.size()) == word) {
+		//			result += digit;
+		//			i += word.size();
+		//			break;
+		//		}
+		//	}
+		//}
+		for (auto& pair : table)
+		{
+			const string& word = pair.first;
+			char digit = pair.second;
+
+			if (s.substr(i, word.size()) == word) {
+				result += digit;
+				i += word.size();
+				break;
 			}
 		}
 	}
-
 	return stoi(result);
 }
